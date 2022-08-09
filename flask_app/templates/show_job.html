@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One Job</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Showing {{job.address}}</h1>
+        <h1>Added By: {{job.user.first_name}} {{job.user.last_name}}</h1>
+
+        <h2>Start Date: {{job.start_date}}</h2>
+        <h2>End Date: {{job.end_date}}</h2>
+
+        <h2>Number of Floors: {{job.number_of_floors}}</h2>
+        <h2>Price per Floor: {{job.price_per_floor}}</h2>
+        <h2>Total Price: {{job.total_price}}</h2>
+
+        <h2>Payment: {{job.check_if_paid}}</h2>
+        <h2>Partial Payment: {{job.partial_payment}}</h2>
+        <h2>Remaining Payment: {{job.remaining_payments}}</h2>
+        <h2>Expenses: {{job.expenses}}</h2>
+        <h2>Contractor's Name: {{job.contractor_name}}</h2>
+        <h2>Contractor's Number: {{job.contractor_number}}</h2>
+        <h2>Management's Name: {{job.management_name}}</h2>
+        <h2>Management's Number: {{job.management_number}}</h2>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+
+<body>
+    <div class="container">
+        <a href="/logout">Logout</a>
+        <h1>Welcome, {{user.first_name}}!</h1>
+
+        <!-- Table Start -->
+        <table class="table">
+            <!-- Header -->
+            <thead>
+                <tr>
+                    <th>Address</th>
+                    <th>Number of Floors</th>
+                    <th>Total Price</th>
+                    <th>Payment</th>
+                    <th>Contractor's Name</th>
+                    <th>Contractor's Number</th>
+                    <th>Added By:</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            <!-- Rows -->
+            <tbody>
+
+                <!-- For Loops to generate a new row for each job added. -->
+                <!-- For Loop Start -->
+                {% for job in all_jobs %}
+                <tr>
+                    <th><a href="/job/{{job.id}}">{{job.address}}</a></th>
+                    <td>{{job.number_of_floors}}</td>
+                    <td>{{job.total_price}}</td>
+                    <td>{{job.check_if_paid}}</td>
+                    <td>{{job.contractor_name}}</td>
+                    <td>{{job.contractor_number}}</td>
+                    <td>{{job.user.first_name}}</td>
+                    <td>
+                        <a href="/job/{{job.id}}/edit">Edit</a>
+                        |
+                        <a href="/job/{{job.id}}/delete">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+                <!-- For Loop End -->
+            </tbody>
+        </table>
+
+        <!-- Table End -->
+
+
+
+        <a href="/new_job">Add a new job</a>
+    </div>
+</body>
+
+</html>

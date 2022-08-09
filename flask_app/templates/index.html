@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fire Escape</title>
+<link rel="stylesheet" href="./CSS/style.css">
+</head>
+
+<body>
+    <div class="container" id="container">
+
+        <h1>Please Register or Login to Visit the Site</h1>
+
+        {% with messages = get_flashed_messages() %}
+        <!-- declare a variable called messages -->
+        {% if messages %}
+        <!-- check if there are any messages -->
+        {% for message in messages %}
+        <!-- loop through the messages -->
+        <p>{{message}}</p> <!-- display each message in a paragraph tag -->
+
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+        <!-- ====== Registration Form Start ===== -->
+        <div class="form-container sign-up-container">
+            <!-- action="/register" sends it to the register route using post method -->
+
+            <form action="/register" method="post">
+                <h1>Register Here</h1>
+                <!-- First Name Field for registration -->
+                <div>
+                    <label for="first_name" class="form-label">First Name</label>
+                    <input type="text" id="first_name" name="first_name">
+                </div>
+
+                <!-- Last Name Field for registration -->
+                <div>
+                    <label for="last_name" class="form-label">Last Name</label>
+                    <input type="text" id="last_name" name="last_name">
+                </div>
+
+                <!-- Email Field for registration -->
+                <div>
+                    <label for="email" class="form-label">Email Address</label>
+                    <input type="email" id="email" name="email">
+                </div>
+
+                <!-- Password Field for registration -->
+                <div>
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" id="password" name="password">
+                </div>
+
+                <!-- Confirm Password Field for registration -->
+                <div>
+                    <label for="pass_conf" class="form-label">Confirm Password</label>
+                    <input type="password" id="pass_conf" name="pass_conf">
+                </div>
+                <button type="submit">Register</button>
+            </form>
+        </div>
+        <!-- ===== Registration Form End ===== -->
+
+
+        <!-- ===== Login Form Start ===== -->
+        <!-- log-in box starts here (for CSS) -->
+        <div class="form-container sign-in-container">
+            <form action="/login" method="post">
+                <h1>Login Here</h1>
+                <!-- Email Field for Login -->
+                <div>
+                    <label for="email" class="form-label">Email Address</label>
+                    <input type="email" id="email" name="email">
+                </div>
+
+                <!-- Password Field for Login -->
+                <div>
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" id="password" name="password">
+                </div>
+
+                <button type="submit">Login</button>
+            </form>
+        </div>
+        <!-- ===== Login Form End ===== -->
+
+        <!-- ===== Overlay  ===== -->
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>Welcome Back!</h1>
+                    <p>To keep connected with us please login with your personal info</p>
+                    <button class="ghost" id="signIn">Sign In</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1>Hello, Friend!</h1>
+                    <p>Enter your personal details and start journey with us</p>
+                    <button class="ghost" id="signUp">Sign Up</button>
+                </div>
+            </div>
+        </div>
+
+    </div> <!-- End of container -->
+
+    <script src="./JS/index.js"></script>
+</body>
+
+</html>

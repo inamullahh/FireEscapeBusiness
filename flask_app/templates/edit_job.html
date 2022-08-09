@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Job</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Edit {{job.address}} Added By: {{job.user.first_name}} {{job.user.last_name}}</h1>
+        <a href="/dashboard">Dashboard</a>
+
+
+        <!-- Validation Catcher  -->
+        {% with messages = get_flashed_messages() %}
+        <!-- declare a variable called messages -->
+        {% if messages %}
+        <!-- check if there are any messages -->
+        {% for message in messages %}
+        <!-- loop through the messages -->
+        <p>{{message}}</p> <!-- display each message in a paragraph tag -->
+
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+        <!-- Always pass in ur id in update to specify which job to update (if not can end up deleting all the data from database) -->
+        <form action="/job/{{job.id}}/update" method="post">
+
+            <!-- Contractor's Name -->
+            <div>
+                <label for="contractor_name">Contractor's Name:</label>
+                <input type="text" id="contractor_name" name="contractor_name" value="{{job.contractor_name}}">
+            </div>
+
+            <!-- Contractor's Phone Number -->
+            <div>
+                <input type="number" id="contractor_number" name="contractor_number" value="{{job.contractor_number}}">
+            </div>
+
+            <!-- Job Address -->
+            <div>
+                <input type="text" id="address" name="address" value="{{job.address}}">
+            </div>
+
+            <!-- Work Start Date -->
+            <div>
+                <input type="date" id="start_date" name="start_date" value="{{job.start_date}}">
+            </div>
+
+            <!-- Work End Date -->
+            <div>
+                <input type="date" id="end_date" name="end_date" value="{{job.end_date}}">
+            </div>
+
+            <!-- Number of floors -->
+            <div>
+                <input type="number" id="number_of_floors" name="number_of_floors" value="{{job.number_of_floors}}">
+            </div>
+
+            <!-- Price per Floor -->
+            <div>
+                <input type="number" id="price_per_floor" name="price_per_floor" value="{{job.price_per_floor}}">
+            </div>
+
+            <!-- Total Price -->
+            <div>
+                <input type="number" id="total_price" name="total_price" value="{{job.total_price}}">
+            </div>
+
+            <!-- Check if paid -->
+            <div>
+                <input type="number" id="check_if_paid" name="check_if_paid" value="{{job.check_if_paid}}">
+            </div>
+
+            <!-- Partial Amount Paid -->
+            <div>
+                <input type="number" id="partial_payment" name="partial_payment" value="{{job.partial_payment}}">
+            </div>
+
+            <!-- Remaining Payment -->
+            <div>
+                <input type="number" id="remaining_payment" name="remaining_payment" value="{{job.remaining_payment}}">
+            </div>
+
+            <!-- Expenses -->
+            <div>
+                <input type="number" id="expenses" name="expenses" value="{{job.expenses}}">
+            </div>
+
+            <!-- Management's Name -->
+            <div>
+                <input type="text" id="management_name" name="management_name" value="{{job.management_name}}">
+            </div>
+
+            <!-- Contractor's Phone Number -->
+            <div>
+                <input type="number" id="management_number" name="management_number" value="{{job.management_number}}">
+            </div>
+
+            <button type="submit">Update</button>
+        </form>
+
+    </div>
+</body>
+
+</html>
