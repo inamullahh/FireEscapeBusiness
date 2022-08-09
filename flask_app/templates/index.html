@@ -1,36 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fire Escape</title>
-<link rel="stylesheet" href="./CSS/style.css">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fire Escape</title>
+    <!-- To Link CSS -->
+    <link rel="stylesheet" href="{{url_for('static', filename='css/index.css')}}">
 </head>
 
 <body>
-    <div class="container" id="container">
+    {% with messages = get_flashed_messages() %}
+    <!-- declare a variable called messages -->
+    {% if messages %}
+    <!-- check if there are any messages -->
+    {% for message in messages %}
+    <!-- loop through the messages -->
+    <p class="alert">{{message}}</p> <!-- display each message in a paragraph tag -->
 
-        <h1>Please Register or Login to Visit the Site</h1>
-
-        {% with messages = get_flashed_messages() %}
-        <!-- declare a variable called messages -->
-        {% if messages %}
-        <!-- check if there are any messages -->
-        {% for message in messages %}
-        <!-- loop through the messages -->
-        <p>{{message}}</p> <!-- display each message in a paragraph tag -->
-
-        {% endfor %}
-        {% endif %}
-        {% endwith %}
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    <div class="container">
 
         <!-- ====== Registration Form Start ===== -->
-        <div class="form-container sign-up-container">
+        <div class="signup-box">
+            <h1>Sign Up</h1>
             <!-- action="/register" sends it to the register route using post method -->
-
             <form action="/register" method="post">
-                <h1>Register Here</h1>
                 <!-- First Name Field for registration -->
                 <div>
                     <label for="first_name" class="form-label">First Name</label>
@@ -62,15 +60,16 @@
                 </div>
                 <button type="submit">Register</button>
             </form>
+            <p class="para-2">Already have an account? <a href="#">Login Here</a></p>
         </div>
         <!-- ===== Registration Form End ===== -->
 
 
         <!-- ===== Login Form Start ===== -->
         <!-- log-in box starts here (for CSS) -->
-        <div class="form-container sign-in-container">
+        <div class="login-box">
+            <h1>Log In</h1>
             <form action="/login" method="post">
-                <h1>Login Here</h1>
                 <!-- Email Field for Login -->
                 <div>
                     <label for="email" class="form-label">Email Address</label>
@@ -85,28 +84,14 @@
 
                 <button type="submit">Login</button>
             </form>
+            <p class="para-2">Not have an account?<a href="#">Sign Up Here</a></p>
         </div>
         <!-- ===== Login Form End ===== -->
 
-        <!-- ===== Overlay  ===== -->
-        <div class="overlay-container">
-            <div class="overlay">
-                <div class="overlay-panel overlay-left">
-                    <h1>Welcome Back!</h1>
-                    <p>To keep connected with us please login with your personal info</p>
-                    <button class="ghost" id="signIn">Sign In</button>
-                </div>
-                <div class="overlay-panel overlay-right">
-                    <h1>Hello, Friend!</h1>
-                    <p>Enter your personal details and start journey with us</p>
-                    <button class="ghost" id="signUp">Sign Up</button>
-                </div>
-            </div>
-        </div>
-
     </div> <!-- End of container -->
 
-    <script src="./JS/index.js"></script>
+    <!-- For refernce only (This is how we connect our js files) -->
+    <!-- <script type="text/javascript" src="{{ url_for('static',filename='js/index.js') }}"></script> -->
 </body>
 
 </html>
