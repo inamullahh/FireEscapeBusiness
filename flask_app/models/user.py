@@ -1,6 +1,9 @@
 # Import connectToMySQL to run the queries. Queries are not going to run without it.
 from flask_app.config.mysqlconnection import connectToMySQL
 
+# Import for password reset 
+from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
+
 # Import flash to see the validation errors.
 from flask import flash
 
@@ -27,8 +30,24 @@ class User:
         self.created_at =data["created_at"]
         self.updated_at =data["updated_at"]
 
+    # Reset Token used to reset password
+    def get_reset_token(self, expires_sec=1800):
+        s = Serializer(app.config['SECRET_KEY'], expires_sec)
+        return s.dumps({'user_id':self.id}).decode('utf-8')
+
 # Reminder: @staticmethods are always validators.
             # @classmethods are always queries.
+
+    # To verify the reset token
+    @staticmethod
+    def vaerify_reset_token(token):
+        s = Serializer(app.config['SECRET_KEY'])
+        try:
+            user_id = s.loads(token)['user_id']
+        except:
+            return None
+        return User.query.get(user_id)
+
 
     @staticmethod
     def validate_register(data):
