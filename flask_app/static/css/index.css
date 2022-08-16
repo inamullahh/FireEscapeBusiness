@@ -3,6 +3,12 @@ body {
 	font-family: 'roboto', sans-serif;
 }
 
+
+
+.flex {
+	display: flex;
+}
+
 .signup-box {
 	width: 360px;
 	height: 550px;

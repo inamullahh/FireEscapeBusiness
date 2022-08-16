@@ -6,60 +6,74 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
+    <!-- To Link CSS -->
+    <link rel="stylesheet" href="{{url_for('static', filename='css/dashboard.css')}}">
+
+    <!-- Need it for the icons under the actions columns -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
 </head>
 
 <body>
-    <div class="container">
-        <a href="/logout">Logout</a>
+    <div class="website_header">
         <h1>Welcome, {{user.first_name}} {{user.last_name}}</h1>
-
+        <button><a href="/logout" class="no_underline">Logout</a></button>
+    </div>
+    <!-- Table Header -->
+    <div class="table_header">
+        <p>Job Details</p>
+        <div>
+            <!-- Sort by  -->
+            <select>
+                <option value="">-- Sort By -- </option>
+                <option value="actual value 1">Display Text 1</option>
+                <option value="actual value 2">Display Text 2</option>
+                <option value="actual value 3">Display Text 3</option>
+            </select>
+            <!-- Button to add a new job -->
+            <button><a href="/new_job" class="add_new no_underline">+ Add New</a></button>
+        </div>
+    </div>
+    <div class="table_selection">
         <!-- Table Start -->
         <table class="table">
-            <!-- Header -->
+            <!-- Header Content (Column Names)-->
             <thead>
-                <tr>
+                <tr class="sticky">
                     <th>Address</th>
                     <th>Number of Floors</th>
                     <th>Total Price</th>
                     <th>Payment</th>
                     <th>Contractor's Name</th>
                     <th>Contractor's Number</th>
-                    <th>Added By:</th>
                     <th>Actions</th>
+                    <th>Added By:</th>
                 </tr>
             </thead>
 
             <!-- Rows -->
             <tbody>
-
                 <!-- For Loops to generate a new row for each job added. -->
                 <!-- For Loop Start -->
                 {% for job in all_jobs %}
                 <tr>
-                    <th><a href="/job/{{job.id}}">{{job.address}}</a></th>
+                    <td><a href="/job/{{job.id}}" class="no_underline">{{job.address}}</a></td>
                     <td>{{job.number_of_floors}}</td>
                     <td>{{job.total_price}}</td>
                     <td>{{job.check_if_paid}}</td>
                     <td>{{job.contractor_name}}</td>
                     <td>{{job.contractor_number}}</td>
-                    <td>{{job.user.first_name}}</td>
                     <td>
-                        <a href="/job/{{job.id}}/edit">Edit</a>
-                        |
-                        <a href="/job/{{job.id}}/delete">Delete</a>
+                        <button><a href="/job/{{job.id}}/edit"><i class="fa-solid fa-pen-to-square"></i></a></button>
+                        <button><a href="/job/{{job.id}}/delete"><i class="fa-solid fa-trash"></i></a></button>
                     </td>
+                    <td>{{job.user.first_name}}</td>
                 </tr>
                 {% endfor %}
                 <!-- For Loop End -->
             </tbody>
         </table>
-
-        <!-- Table End -->
-
-
-
-        <a href="/new_job">Add a new job</a>
     </div>
+    <!-- Table End -->
 </body>
 
 </html>
