@@ -29,6 +29,10 @@ body {
     text-decoration: none; /* Gets rid of the underlines from the link */
 }
 
+.fixed {
+    position: fixed;
+}
+
 .sticky {
     position: sticky;
     top: 0;
